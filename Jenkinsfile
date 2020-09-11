@@ -3,7 +3,7 @@
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -f dockerfile . -t yehiam/jenkins_node:v1.0'
+                sh 'docker build -f dockerfile . -t yehiam/jenkins_node_dev:v1.0'
             }
         }
         stage('Push') {
@@ -12,14 +12,14 @@
              
                 
                 sh 'docker login --username $USERNAME --password $PASSWORD'
-                sh 'docker push  yehiam/jenkins_node:v1.0'
+                sh 'docker push  yehiam/jenkins_node_dev:v1.0'
             }
            
             }
         }
         stage('Deploy') {
             steps {
-                sh 'docker run -d -p 3000:3000 yehiam/jenkins_node:v1.0'
+                sh 'docker run -d -p 3000:3000 yehiam/jenkins_node_dev:v1.0'
             }
         }
     }
