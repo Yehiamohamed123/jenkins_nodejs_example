@@ -18,7 +18,7 @@
             }
             
             }
-    }
+    
         stage('Push') {
             steps {
                 withCredentials([usernamePassword(credentialsId:"docker",usernameVariable:"USERNAME",passwordVariable:"PASSWORD")]){
