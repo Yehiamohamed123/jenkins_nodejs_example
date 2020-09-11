@@ -19,7 +19,7 @@
         }
         stage('Deploy') {
             steps {
-                sh 'docker run -d -p 4000:3000 yehiam/jenkins_node:v1.0'
+                sh 'docker run -d -p 5000:3000 yehiam/jenkins_node:v1.0'
             }
         }
     }
