@@ -3,40 +3,24 @@
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -f dockerfile . -t yehiam/jenkins_node:v1.0'
-            
+                sh 'docker build -f dockerfile . -t yehiam/jenkins_node_dev:v1.0'
+            }
         }
-        
-    post {
-      success {
-      slackSend (color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME}  [${env.BUILD_NUMBER}]' (${env.BUILD_URL}console)")
-      }
-
-      failure {
-      slackSend (color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME}  [${env.BUILD_NUMBER}]' (${env.BUILD_URL}console)")
-      }
-
-      aborted {
-      slackSend (color: '#000000', message: "ABORTED: Job '${env.JOB_NAME}  [${env.BUILD_NUMBER}]' (${env.BUILD_URL}console)")
-      }
-    }
-         
-      stage('Push') {
+        stage('Push') {
             steps {
                 withCredentials([usernamePassword(credentialsId:"docker",usernameVariable:"USERNAME",passwordVariable:"PASSWORD")]){
              
                 
                 sh 'docker login --username $USERNAME --password $PASSWORD'
-                sh 'docker push  yehiam/jenkins_node:v1.0'
+                sh 'docker push  yehiam/jenkins_node_dev:v1.0'
             }
            
             }
         }
         stage('Deploy') {
             steps {
-                sh 'docker run -d -p 6000:3000 yehiam/jenkins_node:v1.0'
+                sh 'docker run -d -p 6000:3000 yehiam/jenkins_node_dev:v1.0'
             }
         }
     }
- 
-
+ }
