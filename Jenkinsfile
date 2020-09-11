@@ -8,7 +8,7 @@
         }
         stage('Push') {
             steps {
-                withCredentials([usernamePassword(credentialsId:"docker",usernameVariable:"USERNAME",passwordVariable:"PASSWORD")]){
+                withCredentials([usernamePassword(credentialsId:"docker",usernameVariable:'USERNAME',passwordVariable:'PASSWORD')]){
              
                 
                 sh 'docker login --username $USERNAME --pasword $PASSWORD'
