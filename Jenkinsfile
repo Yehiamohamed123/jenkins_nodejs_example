@@ -3,7 +3,7 @@
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -f dockerfile ,-t yehiam/jenkins_node:v1.0'
+                sh 'docker build -f dockerfile . -t yehiam/jenkins_node:v1.0'
             }
         }
         stage('Push') {
