@@ -8,7 +8,7 @@
         }
                post{
              success{
-              slackSend(color:'#00FF00',message:'successful':job '${env.JOB_NAME}${env.BUILD_NUMBER}')
+              slackSend(color:'#00FF00',message:'successful')
             }
              failure{
                 slackSend(color:'#FF0000',message:'failure')
